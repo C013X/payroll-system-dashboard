@@ -1,0 +1,57 @@
+{
+  "name": "payroll-system-dashboard",
+  "short_name": "Payroll System",
+  "description": "Complete Payroll Management System with Employee Clock-In, Hours Tracking, and Payroll Processing",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#d4af37",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%230a0a0a' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='%23d4af37' text-anchor='middle' dy='.3em' font-weight='bold'>💼</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%230a0a0a' width='512' height='512'/><text x='50%' y='50%' font-size='280' fill='%23d4af37' text-anchor='middle' dy='.3em' font-weight='bold'>💼</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%231a1a1a' width='540' height='720'/><text x='270' y='100' font-size='40' fill='%23d4af37' text-anchor='middle' font-weight='bold'>Payroll Dashboard</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Clock In",
+      "short_name": "Clock In",
+      "description": "Clock in to start your work day",
+      "url": "/?action=clock-in",
+      "icons": []
+    },
+    {
+      "name": "View Hours",
+      "short_name": "Hours",
+      "description": "View your work hours and time tracking",
+      "url": "/?action=hours",
+      "icons": []
+    },
+    {
+      "name": "View Payroll",
+      "short_name": "Payroll",
+      "description": "Check your payroll information",
+      "url": "/?action=payroll",
+      "icons": []
+    }
+  ]
+}
