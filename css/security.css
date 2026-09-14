@@ -1,0 +1,159 @@
+/* Security Hardening Styles */
+
+/* Prevent copy-paste attacks */
+html {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body, input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Prevent inspector access visual cues */
+.protected-content {
+    pointer-events: auto;
+}
+
+/* Secure input fields */
+input[type="password"],
+input[type="text"],
+textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: none;
+}
+
+/* Prevent dragging */n* {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+/* Disable right-click context menu styling */
+.context-protected {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+/* Security indicator styles */
+.security-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #00ff41;
+    color: #0a0a0a;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.security-warning {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #ff4444;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Encrypted data indicator */
+.encrypted {
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+.encrypted::after {
+    content: "🔒";
+    position: absolute;
+    right: 0.5rem;
+}
+
+/* CSRF Token display */
+.csrf-token {
+    display: none;
+}
+
+/* Session timeout warning */
+.session-warning {
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 2px solid #ff4444;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: #ff4444;
+    display: none;
+}
+
+.session-warning.show {
+    display: block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0.8;
+    }
+}
+
+/* Two-Factor Authentication styles */
+.tfa-input {
+    letter-spacing: 0.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Security status indicator */
+.security-status-good {
+    color: #00ff41;
+}
+
+.security-status-warning {
+    color: #ffff00;
+}
+
+.security-status-critical {
+    color: #ff4444;
+}
+
+/* Prevent text selection on sensitive elements */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Sensitive data masking */
+.masked-ssn {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1rem;
+}
+
+/* Audit log security highlighting */
+.audit-entry-success {
+    border-left: 4px solid #00ff41;
+}
+
+.audit-entry-failure {
+    border-left: 4px solid #ff4444;
+}
+
+.audit-entry-warning {
+    border-left: 4px solid #ffff00;
+}
