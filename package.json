@@ -1,0 +1,38 @@
+{
+  "name": "payroll-system-dashboard",
+  "version": "1.0.0",
+  "description": "Complete Payroll Management System with Employee Clock-In, Hours Tracking, and Payroll Processing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'Build complete'",
+    "deploy": "echo 'Deploy to production'",
+    "electron": "electron main.js",
+    "build:windows": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "test": "jest"
+  },
+  "keywords": [
+    "payroll",
+    "employee",
+    "time-tracking",
+    "pwa",
+    "offline"
+  ],
+  "author": "C013X",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "electron": "^latest",
+    "electron-builder": "^latest"
+  }
+}
