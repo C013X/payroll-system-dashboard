@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Secure Payroll System Dashboard">
+    <title>Payroll System Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/security.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <h1>💼 Payroll System</h1>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#employees" class="nav-link">Employees</a></li>
+                <li><a href="#payroll" class="nav-link">Payroll</a></li>
+                <li><a href="#reports" class="nav-link">Reports</a></li>
+                <li><a href="#compliance" class="nav-link">Compliance</a></li>
+                <li><a href="#settings" class="nav-link">Settings</a></li>
+                <li><a href="#logout" class="nav-link logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section-header">
+                <h2>Dashboard Overview</h2>
+                <p>Real-time payroll metrics and system status</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Key Metrics -->
+                <div class="metric-card">
+                    <h3>Total Employees</h3>
+                    <p class="metric-value" id="totalEmployees">0</p>
+                    <p class="metric-label">Active Employees</p>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Pending Payroll</h3>
+                    <p class="metric-value" id="pendingPayroll">$0.00</p>
+                    <p class="metric-label">Next Processing Date</p>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Tax Compliance</h3>
+                    <p class="metric-value" id="taxCompliance">100%</p>
+                    <p class="metric-label">All Systems Current</p>
+                </div>
+
+                <div class="metric-card">
+                    <h3>System Status</h3>
+                    <p class="metric-value status-online">✓ Online</p>
+                    <p class="metric-label">All Services Active</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <button class="btn btn-primary" onclick="app.openModal('processPayroll')">Process Payroll</button>
+                <button class="btn btn-secondary" onclick="app.openModal('addEmployee')">Add Employee</button>
+                <button class="btn btn-secondary" onclick="app.openModal('generateReport')">Generate Report</button>
+                <button class="btn btn-secondary" onclick="app.openModal('taxAudit')">Tax Audit</button>
+            </div>
+        </section>
+
+        <!-- Employees Section -->
+        <section id="employees" class="section">
+            <div class="section-header">
+                <h2>Employee Management</h2>
+                <p>Manage employee information and records</p>
+            </div>
+
+            <div class="employees-controls">
+                <input type="text" id="employeeSearch" placeholder="Search employees..." class="search-box">
+                <button class="btn btn-primary" onclick="app.openModal('addEmployee')">Add New Employee</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                        <th>Tax Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody">
+                    <!-- Populated by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Payroll Section -->
+        <section id="payroll" class="section">
+            <div class="section-header">
+                <h2>Payroll Processing</h2>
+                <p>Process and manage payroll cycles</p>
+            </div>
+
+            <div class="payroll-controls">
+                <label for="payrollCycle">Select Payroll Cycle:</label>
+                <select id="payrollCycle" class="form-control">
+                    <option>Weekly</option>
+                    <option>Bi-weekly</option>
+                    <option>Monthly</option>
+                </select>
+                <button class="btn btn-primary" onclick="app.processPayroll()">Process Payroll Run</button>
+            </div>
+
+            <div class="payroll-summary">
+                <h3>Payroll Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span>Gross Payroll:</span>
+                        <span id="grossPayroll">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total Deductions:</span>
+                        <span id="totalDeductions">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Net Payroll:</span>
+                        <span id="netPayroll">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Tax Withholding:</span>
+                        <span id="taxWithholding">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Gross</th>
+                        <th>Deductions</th>
+                        <th>Taxes</th>
+                        <th>Net</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="payrollTableBody">
+                    <!-- Populated by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="section">
+            <div class="section-header">
+                <h2>Reports & Analytics</h2>
+                <p>Generate and view payroll reports</p>
+            </div>
+
+            <div class="reports-controls">
+                <button class="btn btn-primary" onclick="app.generateReport('payrollSummary')">Payroll Summary Report</button>
+                <button class="btn btn-secondary" onclick="app.generateReport('taxReport')">Tax Report</button>
+                <button class="btn btn-secondary" onclick="app.generateReport('deductionReport')">Deduction Report</button>
+                <button class="btn btn-secondary" onclick="app.generateReport('employeeEarnings')">Employee Earnings Report</button>
+            </div>
+
+            <div id="reportContent" class="report-content">
+                <p>Select a report to view</p>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section id="compliance" class="section">
+            <div class="section-header">
+                <h2>Compliance & Audit</h2>
+                <p>Ensure regulatory compliance and security</p>
+            </div>
+
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <h3>Federal Tax Compliance</h3>
+                    <p class="compliance-status" id="federalCompliance">✓ Current</p>
+                    <button class="btn btn-secondary" onclick="app.auditTaxes('federal')">Run Audit</button>
+                </div>
+
+                <div class="compliance-card">
+                    <h3>State Tax Compliance</h3>
+                    <p class="compliance-status" id="stateCompliance">✓ Current</p>
+                    <button class="btn btn-secondary" onclick="app.auditTaxes('state')">Run Audit</button>
+                </div>
+
+                <div class="compliance-card">
+                    <h3>Data Security</h3>
+                    <p class="compliance-status" id="securityStatus">✓ Encrypted</p>
+                    <button class="btn btn-secondary" onclick="app.securityCheck()">Security Check</button>
+                </div>
+
+                <div class="compliance-card">
+                    <h3>Audit Trail</h3>
+                    <p class="compliance-status">✓ Monitored</p>
+                    <button class="btn btn-secondary" onclick="app.openModal('auditLog')">View Logs</button>
+                </div>
+            </div>
+
+            <div class="audit-log">
+                <h3>Recent Activity Log</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auditTableBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="section-header">
+                <h2>System Settings</h2>
+                <p>Configure payroll system preferences</p>
+            </div>
+
+            <div class="settings-container">
+                <div class="settings-group">
+                    <h3>Tax Configuration</h3>
+                    <div class="form-group">
+                        <label for="federalTaxRate">Federal Tax Rate (%):</label>
+                        <input type="number" id="federalTaxRate" class="form-control" value="15" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="stateTaxRate">State Tax Rate (%):</label>
+                        <input type="number" id="stateTaxRate" class="form-control" value="5" min="0" max="100">
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Deductions</h3>
+                    <div class="form-group">
+                        <label for="healthInsurance">Health Insurance Deduction (%):</label>
+                        <input type="number" id="healthInsurance" class="form-control" value="3" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="retirement">Retirement Contribution (%):</label>
+                        <input type="number" id="retirement" class="form-control" value="5" min="0" max="100">
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Security Settings</h3>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="twoFactorAuth" checked> Enable Two-Factor Authentication
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="encryptionEnabled" checked> Enable Data Encryption
+                        </label>
+                    </div>
+                    <button class="btn btn-secondary" onclick="app.changePassword()">Change Password</button>
+                </div>
+
+                <button class="btn btn-primary" onclick="app.saveSettings()">Save Settings</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="modalOverlay" class="modal-overlay" onclick="app.closeModal()"></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="app.closeModal()">&times;</span>
+            <div id="modalBody">
+                <!-- Modal content populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Scripts -->
+    <script src="js/security.js"></script>
+    <script src="js/encryption.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
